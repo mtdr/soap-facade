@@ -43,6 +43,16 @@ public class SoapClient extends WebServiceGatewaySupport {
         return (DivideResponse) sendSoapRequest(divideReq, "Divide");
     }
 
+    public SubtractResponse getSubtractResult(int a, int b) {
+        Subtract subtractReq = new Subtract();
+
+        subtractReq.setIntA(a);
+        subtractReq.setIntB(b);
+        log.info("Requesting subtract res");
+
+        return (SubtractResponse) sendSoapRequest(subtractReq, "Subtract");
+    }
+
     private Object sendSoapRequest(Object reqObj, String req) {
         return getWebServiceTemplate()
                 .marshalSendAndReceive("http://www.dneonline.com/calculator.asmx",

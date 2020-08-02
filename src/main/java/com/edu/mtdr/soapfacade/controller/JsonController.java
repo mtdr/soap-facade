@@ -6,6 +6,7 @@ import com.edu.mtdr.soapfacade.service.SoapClient;
 import com.edu.mtdr.soapfacade.wsdl.AddResponse;
 import com.edu.mtdr.soapfacade.wsdl.DivideResponse;
 import com.edu.mtdr.soapfacade.wsdl.MultiplyResponse;
+import com.edu.mtdr.soapfacade.wsdl.SubtractResponse;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,5 +40,11 @@ public class JsonController {
     CalcJsonResponse divide(@RequestBody CalcJsonReq req) {
         DivideResponse soapResponse = soapClient.getDivideResult(req.getA(), req.getB());
         return new CalcJsonResponse(soapResponse.getDivideResult());
+    }
+
+    @PostMapping("/subtract")
+    CalcJsonResponse subtract(@RequestBody CalcJsonReq req) {
+        SubtractResponse soapResponse = soapClient.getSubtractResult(req.getA(), req.getB());
+        return new CalcJsonResponse(soapResponse.getSubtractResult());
     }
 }
