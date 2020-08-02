@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://www.w3.org/2003/05/soap-envelope">
+    <xsd:element name="Addition">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Body">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xs:element name="Add">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="intA" type="xs:string" />
+                                        <xs:element name="intB" type="xs:string" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xs:schema>
