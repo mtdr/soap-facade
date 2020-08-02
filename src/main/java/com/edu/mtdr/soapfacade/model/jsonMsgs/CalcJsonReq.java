@@ -1,13 +1,13 @@
-package com.edu.mtdr.soapfacade.model.jsonMsgs.multiply;
+package com.edu.mtdr.soapfacade.model.jsonMsgs;
 
-public class MultiplyJsonReq {
+public class CalcJsonReq {
     int a;
     int b;
 
-    public MultiplyJsonReq() {
+    public CalcJsonReq() {
     }
 
-    public MultiplyJsonReq(int a, int b) {
+    public CalcJsonReq(int a, int b) {
         this.a = a;
         this.b = b;
     }

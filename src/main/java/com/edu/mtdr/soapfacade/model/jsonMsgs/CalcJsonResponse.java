@@ -1,12 +1,12 @@
-package com.edu.mtdr.soapfacade.model.jsonMsgs.multiply;
+package com.edu.mtdr.soapfacade.model.jsonMsgs;
 
-public class MultiplyJsonResponse {
+public class CalcJsonResponse {
     int result;
 
-    public MultiplyJsonResponse() {
+    public CalcJsonResponse() {
     }
 
-    public MultiplyJsonResponse(int result) {
+    public CalcJsonResponse(int result) {
         this.result = result;
     }
 

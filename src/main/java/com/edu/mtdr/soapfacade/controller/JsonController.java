@@ -1,8 +1,9 @@
 package com.edu.mtdr.soapfacade.controller;
 
-import com.edu.mtdr.soapfacade.model.jsonMsgs.multiply.MultiplyJsonReq;
-import com.edu.mtdr.soapfacade.model.jsonMsgs.multiply.MultiplyJsonResponse;
+import com.edu.mtdr.soapfacade.model.jsonMsgs.CalcJsonReq;
+import com.edu.mtdr.soapfacade.model.jsonMsgs.CalcJsonResponse;
 import com.edu.mtdr.soapfacade.service.SoapClient;
+import com.edu.mtdr.soapfacade.wsdl.AddResponse;
 import com.edu.mtdr.soapfacade.wsdl.MultiplyResponse;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,14 @@ public class JsonController {
     }
 
     @PostMapping("/multiply")
-    MultiplyJsonResponse multiply(@RequestBody MultiplyJsonReq req) {
+    CalcJsonResponse multiply(@RequestBody CalcJsonReq req) {
         MultiplyResponse soapResponse = soapClient.getMultiplyResult(req.getA(), req.getB());
-        return new MultiplyJsonResponse(soapResponse.getMultiplyResult());
+        return new CalcJsonResponse(soapResponse.getMultiplyResult());
+    }
+
+    @PostMapping("/addition")
+    CalcJsonResponse addition(@RequestBody CalcJsonReq req) {
+        AddResponse soapResponse = soapClient.getAdditionResult(req.getA(), req.getB());
+        return new CalcJsonResponse(soapResponse.getAddResult());
     }
 }
