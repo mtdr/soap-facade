@@ -4,6 +4,9 @@ public class MultiplyJsonReq {
     int a;
     int b;
 
+    public MultiplyJsonReq() {
+    }
+
     public MultiplyJsonReq(int a, int b) {
         this.a = a;
         this.b = b;

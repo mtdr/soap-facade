@@ -3,6 +3,9 @@ package com.edu.mtdr.soapfacade.jsonMsgs;
 public class MultiplyJsonResponse {
     int result;
 
+    public MultiplyJsonResponse() {
+    }
+
     public MultiplyJsonResponse(int result) {
         this.result = result;
     }
