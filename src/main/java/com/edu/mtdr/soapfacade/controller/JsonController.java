@@ -4,6 +4,7 @@ import com.edu.mtdr.soapfacade.model.jsonMsgs.CalcJsonReq;
 import com.edu.mtdr.soapfacade.model.jsonMsgs.CalcJsonResponse;
 import com.edu.mtdr.soapfacade.service.SoapClient;
 import com.edu.mtdr.soapfacade.wsdl.AddResponse;
+import com.edu.mtdr.soapfacade.wsdl.DivideResponse;
 import com.edu.mtdr.soapfacade.wsdl.MultiplyResponse;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,15 @@ public class JsonController {
         return new CalcJsonResponse(soapResponse.getMultiplyResult());
     }
 
-    @PostMapping("/addition")
-    CalcJsonResponse addition(@RequestBody CalcJsonReq req) {
+    @PostMapping("/add")
+    CalcJsonResponse add(@RequestBody CalcJsonReq req) {
         AddResponse soapResponse = soapClient.getAdditionResult(req.getA(), req.getB());
         return new CalcJsonResponse(soapResponse.getAddResult());
+    }
+
+    @PostMapping("/divide")
+    CalcJsonResponse divide(@RequestBody CalcJsonReq req) {
+        DivideResponse soapResponse = soapClient.getDivideResult(req.getA(), req.getB());
+        return new CalcJsonResponse(soapResponse.getDivideResult());
     }
 }
