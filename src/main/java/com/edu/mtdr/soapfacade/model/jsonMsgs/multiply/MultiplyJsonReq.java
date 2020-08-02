@@ -1,4 +1,4 @@
-package com.edu.mtdr.soapfacade.jsonMsgs;
+package com.edu.mtdr.soapfacade.model.jsonMsgs.multiply;
 
 public class MultiplyJsonReq {
     int a;

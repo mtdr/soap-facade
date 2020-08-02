@@ -1,7 +1,8 @@
-package com.edu.mtdr.soapfacade;
+package com.edu.mtdr.soapfacade.controller;
 
-import com.edu.mtdr.soapfacade.jsonMsgs.MultiplyJsonReq;
-import com.edu.mtdr.soapfacade.jsonMsgs.MultiplyJsonResponse;
+import com.edu.mtdr.soapfacade.model.jsonMsgs.multiply.MultiplyJsonReq;
+import com.edu.mtdr.soapfacade.model.jsonMsgs.multiply.MultiplyJsonResponse;
+import com.edu.mtdr.soapfacade.service.SoapClient;
 import com.edu.mtdr.soapfacade.wsdl.MultiplyResponse;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;

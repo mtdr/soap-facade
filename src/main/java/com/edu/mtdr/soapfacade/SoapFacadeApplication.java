@@ -1,5 +1,6 @@
 package com.edu.mtdr.soapfacade;
 
+import com.edu.mtdr.soapfacade.service.SoapClient;
 import com.edu.mtdr.soapfacade.wsdl.MultiplyResponse;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

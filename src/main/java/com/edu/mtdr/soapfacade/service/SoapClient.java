@@ -1,4 +1,4 @@
-package com.edu.mtdr.soapfacade;
+package com.edu.mtdr.soapfacade.service;
 
 import com.edu.mtdr.soapfacade.wsdl.*;
 import org.slf4j.Logger;
