@@ -1,6 +1,5 @@
 package com.edu.mtdr.soapfacade;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
@@ -17,8 +16,8 @@ public class AdditionConfiguration {
     }
 
     @Bean
-    public AdditionClient additionClient(Jaxb2Marshaller marshaller) {
-        AdditionClient client = new AdditionClient();
+    public SoapClient additionClient(Jaxb2Marshaller marshaller) {
+        SoapClient client = new SoapClient();
         client.setDefaultUri("http://tempuri.org/Add");
         client.setMarshaller(marshaller);
         client.setUnmarshaller(marshaller);

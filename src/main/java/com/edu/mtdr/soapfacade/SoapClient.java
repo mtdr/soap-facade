@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
-public class AdditionClient extends WebServiceGatewaySupport {
-    private static final Logger log = LoggerFactory.getLogger(AdditionClient.class);
+public class SoapClient extends WebServiceGatewaySupport {
+    private static final Logger log = LoggerFactory.getLogger(SoapClient.class);
 
     public AddResponse getAdditionResult() {
         Addition additionReq = new Addition();
@@ -27,11 +27,11 @@ public class AdditionClient extends WebServiceGatewaySupport {
         return response;
     }
 
-    public MultiplyResponse getMultiplyResult() {
+    public MultiplyResponse getMultiplyResult(int a, int b) {
         Multiply multiplyReq = new Multiply();
 
-        multiplyReq.setIntA(5);
-        multiplyReq.setIntB(10);
+        multiplyReq.setIntA(a);
+        multiplyReq.setIntB(b);
         log.info("Requesting multiply res");
 
         MultiplyResponse response = (MultiplyResponse) getWebServiceTemplate()

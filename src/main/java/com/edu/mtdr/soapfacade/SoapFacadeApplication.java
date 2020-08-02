@@ -1,7 +1,5 @@
 package com.edu.mtdr.soapfacade;
 
-import com.edu.mtdr.soapfacade.wsdl.AddResponse;
-import com.edu.mtdr.soapfacade.wsdl.EnvelopeResponse;
 import com.edu.mtdr.soapfacade.wsdl.MultiplyResponse;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,9 +14,9 @@ public class SoapFacadeApplication {
     }
 
     @Bean
-    CommandLineRunner lookup(AdditionClient additionClient) {
+    CommandLineRunner lookup(SoapClient soapClient) {
         return args -> {
-            MultiplyResponse response = additionClient.getMultiplyResult();
+            MultiplyResponse response = soapClient.getMultiplyResult(5, 10);
             System.err.println(response.getMultiplyResult());
         };
     }
