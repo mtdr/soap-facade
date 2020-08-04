@@ -1,22 +1,19 @@
 package com.edu.mtdr.soapfacade.service;
 
-import com.edu.mtdr.soapfacade.wsdl.*;
+import com.edu.mtdr.soapfacade.model.soapMsgs.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+import org.springframework.ws.soap.client.SoapFaultClientException;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 public class SoapClient extends WebServiceGatewaySupport {
     private static final Logger log = LoggerFactory.getLogger(SoapClient.class);
 
     public AddResponse getAdditionResult(int a, int b) {
-        Addition additionReq = new Addition();
-        Addition.Body.Add add = new Addition.Body.Add();
-        add.setIntA(String.valueOf(a));
-        add.setIntB(String.valueOf(b));
-        Addition.Body body = new Addition.Body();
-        body.setAdd(add);
-        additionReq.setBody(body);
+        Add additionReq = new Add();
+        additionReq.setIntA(a);
+        additionReq.setIntB(b);
 
         log.info("Requesting addition res");
 
@@ -54,8 +51,13 @@ public class SoapClient extends WebServiceGatewaySupport {
     }
 
     private Object sendSoapRequest(Object reqObj, String req) {
-        return getWebServiceTemplate()
-                .marshalSendAndReceive("http://www.dneonline.com/calculator.asmx",
-                        reqObj, new SoapActionCallback("http://tempuri.org/" + req));
+        try {
+            return getWebServiceTemplate()
+                    .marshalSendAndReceive("http://www.dneonline.com/calculator.asmx",
+                            reqObj, new SoapActionCallback("http://tempuri.org/" + req));
+        } catch (SoapFaultClientException e) {
+            System.out.println(e.getSoapFault().getFaultDetail().toString());
+            throw new UnsupportedOperationException();
+        }
     }
 }

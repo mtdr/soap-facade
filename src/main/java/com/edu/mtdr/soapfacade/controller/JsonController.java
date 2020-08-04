@@ -2,11 +2,11 @@ package com.edu.mtdr.soapfacade.controller;
 
 import com.edu.mtdr.soapfacade.model.jsonMsgs.CalcJsonReq;
 import com.edu.mtdr.soapfacade.model.jsonMsgs.CalcJsonResponse;
+import com.edu.mtdr.soapfacade.model.soapMsgs.AddResponse;
+import com.edu.mtdr.soapfacade.model.soapMsgs.DivideResponse;
+import com.edu.mtdr.soapfacade.model.soapMsgs.MultiplyResponse;
+import com.edu.mtdr.soapfacade.model.soapMsgs.SubtractResponse;
 import com.edu.mtdr.soapfacade.service.SoapClient;
-import com.edu.mtdr.soapfacade.wsdl.AddResponse;
-import com.edu.mtdr.soapfacade.wsdl.DivideResponse;
-import com.edu.mtdr.soapfacade.wsdl.MultiplyResponse;
-import com.edu.mtdr.soapfacade.wsdl.SubtractResponse;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,25 +25,25 @@ public class JsonController {
     }
 
     @PostMapping("/multiply")
-    CalcJsonResponse multiply(@RequestBody CalcJsonReq req) {
+    public CalcJsonResponse multiply(@RequestBody CalcJsonReq req) {
         MultiplyResponse soapResponse = soapClient.getMultiplyResult(req.getA(), req.getB());
         return new CalcJsonResponse(soapResponse.getMultiplyResult());
     }
 
     @PostMapping("/add")
-    CalcJsonResponse add(@RequestBody CalcJsonReq req) {
+    public CalcJsonResponse add(@RequestBody CalcJsonReq req) {
         AddResponse soapResponse = soapClient.getAdditionResult(req.getA(), req.getB());
         return new CalcJsonResponse(soapResponse.getAddResult());
     }
 
     @PostMapping("/divide")
-    CalcJsonResponse divide(@RequestBody CalcJsonReq req) {
+    public CalcJsonResponse divide(@RequestBody CalcJsonReq req) {
         DivideResponse soapResponse = soapClient.getDivideResult(req.getA(), req.getB());
         return new CalcJsonResponse(soapResponse.getDivideResult());
     }
 
     @PostMapping("/subtract")
-    CalcJsonResponse subtract(@RequestBody CalcJsonReq req) {
+    public CalcJsonResponse subtract(@RequestBody CalcJsonReq req) {
         SubtractResponse soapResponse = soapClient.getSubtractResult(req.getA(), req.getB());
         return new CalcJsonResponse(soapResponse.getSubtractResult());
     }

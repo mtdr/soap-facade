@@ -12,7 +12,7 @@ public class AdditionConfiguration {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         // this package must match the package in the <generatePackage> specified in
         // pom.xml
-        marshaller.setContextPath("com.edu.mtdr.soapfacade.wsdl");
+        marshaller.setContextPath("com.edu.mtdr.soapfacade.model.soapMsgs");
         return marshaller;
     }
 
