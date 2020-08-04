@@ -1,5 +1,8 @@
 package com.edu.mtdr.soapfacade.model.exceptions;
 
+/**
+ * Исключение аргументов запроса
+ */
 public class SoapFacadeArgumentException extends RuntimeException {
 
     public SoapFacadeArgumentException(String message) {
