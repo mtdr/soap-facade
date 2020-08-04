@@ -28,7 +28,10 @@ public class JsonController {
 
     @PostMapping("/multiply")
     @ApiOperation("Операция умножения")
-    public CalcJsonResponse multiply( @RequestBody CalcJsonReq req) {
+    public CalcJsonResponse multiply(@RequestBody CalcJsonReq req) {
+        if (req.getA() == 0 || req.getB() == 0) {
+            return new CalcJsonResponse(0);
+        }
         MultiplyResponse soapResponse = soapClient.getMultiplyResult(req.getA(), req.getB());
         return new CalcJsonResponse(soapResponse.getMultiplyResult());
     }
@@ -36,6 +39,12 @@ public class JsonController {
     @PostMapping("/add")
     @ApiOperation("Операция сложения")
     public CalcJsonResponse add(@RequestBody CalcJsonReq req) {
+        if (req.getB() == 0) {
+            return new CalcJsonResponse(req.getA());
+        }
+        if (req.getA() == 0) {
+            return new CalcJsonResponse(req.getB());
+        }
         AddResponse soapResponse = soapClient.getAdditionResult(req.getA(), req.getB());
         return new CalcJsonResponse(soapResponse.getAddResult());
     }
@@ -46,6 +55,9 @@ public class JsonController {
         if (req.getB() == 0) {
             throw new SoapFacadeArgumentException("Делитель не может быть 0");
         }
+        if (req.getB() == 1) {
+            return new CalcJsonResponse(req.getA());
+        }
         DivideResponse soapResponse = soapClient.getDivideResult(req.getA(), req.getB());
         return new CalcJsonResponse(soapResponse.getDivideResult());
     }
@@ -53,6 +65,9 @@ public class JsonController {
     @PostMapping("/subtract")
     @ApiOperation("Операция вычитания")
     public CalcJsonResponse subtract(@RequestBody CalcJsonReq req) {
+        if (req.getB() == 0) {
+            return new CalcJsonResponse(req.getA());
+        }
         SubtractResponse soapResponse = soapClient.getSubtractResult(req.getA(), req.getB());
         return new CalcJsonResponse(soapResponse.getSubtractResult());
     }

@@ -1,9 +1,6 @@
 package com.edu.mtdr.soapfacade.model.jsonMsgs;
 
-import io.swagger.annotations.ApiParam;
-
 public class CalcJsonReq {
-    @ApiParam(value = "a", example = "4100003")
     int a;
     int b;
 
