@@ -130,4 +130,12 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub mtdr Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/mtdr/soap-facade</url>
+        </repository>
+    </distributionManagement>
+
 </project>
