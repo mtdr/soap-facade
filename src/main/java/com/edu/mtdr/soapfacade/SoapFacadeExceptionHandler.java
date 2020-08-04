@@ -2,7 +2,7 @@ package com.edu.mtdr.soapfacade;
 
 import com.edu.mtdr.soapfacade.model.exceptions.SoapFacadeArgumentException;
 import com.edu.mtdr.soapfacade.model.exceptions.SoapFacadeResultException;
-import com.edu.mtdr.soapfacade.model.jsonMsgs.ErrorResponse;
+import com.edu.mtdr.soapfacade.model.jsonMsgs.ErrorResponseMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,8 +19,8 @@ public class SoapFacadeExceptionHandler {
      */
     @ResponseBody
     @ExceptionHandler(SoapFacadeArgumentException.class)
-    public ErrorResponse handleArgumentException(SoapFacadeArgumentException e) {
-        return new ErrorResponse(e.getMessage(), HttpStatus.BAD_REQUEST);
+    public ErrorResponseMessage handleArgumentException(SoapFacadeArgumentException e) {
+        return new ErrorResponseMessage(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -30,8 +30,8 @@ public class SoapFacadeExceptionHandler {
      */
     @ResponseBody
     @ExceptionHandler(SoapFacadeResultException.class)
-    public ErrorResponse handleResultException(SoapFacadeResultException e) {
-        return new ErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
+    public ErrorResponseMessage handleResultException(SoapFacadeResultException e) {
+        return new ErrorResponseMessage(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -40,8 +40,8 @@ public class SoapFacadeExceptionHandler {
      */
     @ResponseBody
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ErrorResponse handleResultException() {
-        return new ErrorResponse("Ошибка запроса! Сообщение должно содержать два целочисленных аргумента a и b",
+    public ErrorResponseMessage handleResultException() {
+        return new ErrorResponseMessage("Ошибка запроса! Сообщение должно содержать два целочисленных аргумента a и b",
                 HttpStatus.BAD_REQUEST);
     }
 }
