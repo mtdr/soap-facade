@@ -6,7 +6,7 @@ import com.edu.mtdr.soapfacade.model.soapMsgs.AddResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.DivideResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.MultiplyResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.SubtractResponse;
-import com.edu.mtdr.soapfacade.service.SoapClient;
+import com.edu.mtdr.soapfacade.service.ISoapClientService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,14 +30,14 @@ public class ControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    private SoapClient soapClient;
+    private ISoapClientService soapClientService;
 
     @Test
     public void testMultiply() throws Exception {
         CalcJsonRequestMessage req = new CalcJsonRequestMessage(5, 1);
         MultiplyResponse response = new MultiplyResponse();
         response.setMultiplyResult(5);
-        given(soapClient.getMultiplyResult(req.getA(), req.getB())).willReturn(response);
+        given(soapClientService.getMultiplyResult(req.getA(), req.getB())).willReturn(response);
 
         this.mvc.perform(post("/multiply")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -53,7 +53,7 @@ public class ControllerTest {
         CalcJsonRequestMessage req = new CalcJsonRequestMessage(5, 1);
         AddResponse response = new AddResponse();
         response.setAddResult(6);
-        given(soapClient.getAdditionResult(req.getA(), req.getB())).willReturn(response);
+        given(soapClientService.getAdditionResult(req.getA(), req.getB())).willReturn(response);
 
         this.mvc.perform(post("/add")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -69,7 +69,7 @@ public class ControllerTest {
         CalcJsonRequestMessage req = new CalcJsonRequestMessage(6, 2);
         DivideResponse response = new DivideResponse();
         response.setDivideResult(3);
-        given(soapClient.getDivideResult(req.getA(), req.getB())).willReturn(response);
+        given(soapClientService.getDivideResult(req.getA(), req.getB())).willReturn(response);
 
         this.mvc.perform(post("/divide")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -85,7 +85,7 @@ public class ControllerTest {
         CalcJsonRequestMessage req = new CalcJsonRequestMessage(6, 2);
         SubtractResponse response = new SubtractResponse();
         response.setSubtractResult(4);
-        given(soapClient.getSubtractResult(req.getA(), req.getB())).willReturn(response);
+        given(soapClientService.getSubtractResult(req.getA(), req.getB())).willReturn(response);
 
         this.mvc.perform(post("/subtract")
                 .contentType(MediaType.APPLICATION_JSON)

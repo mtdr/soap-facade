@@ -4,6 +4,7 @@ package com.edu.mtdr.soapfacade.model.exceptions;
  * Исключение аргументов запроса
  */
 public class SoapFacadeArgumentException extends RuntimeException {
+    static final long serialVersionUID = 1627123L;
 
     public SoapFacadeArgumentException(String message) {
         super(message);

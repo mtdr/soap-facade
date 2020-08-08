@@ -1,21 +1,23 @@
 package com.edu.mtdr.soapfacade.service;
 
-import com.edu.mtdr.soapfacade.model.exceptions.SoapFacadeResultException;
 import com.edu.mtdr.soapfacade.model.soapMsgs.*;
+import com.edu.mtdr.soapfacade.util.SoapSenderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
-import org.springframework.ws.soap.client.SoapFaultClientException;
-import org.springframework.ws.soap.client.core.SoapActionCallback;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
- * Клиент для отправки и приема запросов от SOAP-сервера (сервиса калькулятора)
+ * Сервис для отправки и приема запросов от SOAP-сервера (сервиса калькулятора)
  */
-public class SoapClient extends WebServiceGatewaySupport {
+@Service
+public class SoapClientService implements ISoapClientService {
     /**
      * Логгер
      */
-    private static final Logger LOGGER = LoggerFactory.getLogger(SoapClient.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SoapClientService.class);
+
+    private SoapSenderUtil soapSenderUtil;
 
     /**
      * @param a слагаемое
@@ -29,7 +31,7 @@ public class SoapClient extends WebServiceGatewaySupport {
 
         LOGGER.info("Requesting addition res");
 
-        return (AddResponse) sendSoapRequest(additionReq, "Add");
+        return (AddResponse) soapSenderUtil.sendSoapRequest(additionReq, "Add");
     }
 
     /**
@@ -44,7 +46,7 @@ public class SoapClient extends WebServiceGatewaySupport {
         multiplyReq.setIntB(b);
         LOGGER.info("Requesting multiply res");
 
-        return (MultiplyResponse) sendSoapRequest(multiplyReq, "Multiply");
+        return (MultiplyResponse) soapSenderUtil.sendSoapRequest(multiplyReq, "Multiply");
     }
 
     /**
@@ -59,7 +61,7 @@ public class SoapClient extends WebServiceGatewaySupport {
         divideReq.setIntB(b);
         LOGGER.info("Requesting divide res");
 
-        return (DivideResponse) sendSoapRequest(divideReq, "Divide");
+        return (DivideResponse) soapSenderUtil.sendSoapRequest(divideReq, "Divide");
     }
 
     /**
@@ -74,21 +76,11 @@ public class SoapClient extends WebServiceGatewaySupport {
         subtractReq.setIntB(b);
         LOGGER.info("Requesting subtract res");
 
-        return (SubtractResponse) sendSoapRequest(subtractReq, "Subtract");
+        return (SubtractResponse) soapSenderUtil.sendSoapRequest(subtractReq, "Subtract");
     }
 
-    /**
-     * @param reqObj Объект запроса
-     * @param req    Адрес запроса
-     * @return Ответ SOAP-сервера
-     */
-    private Object sendSoapRequest(Object reqObj, String req) {
-        try {
-            return getWebServiceTemplate()
-                    .marshalSendAndReceive("http://www.dneonline.com/calculator.asmx",
-                            reqObj, new SoapActionCallback("http://tempuri.org/" + req));
-        } catch (SoapFaultClientException e) {
-            throw new SoapFacadeResultException(e.getCause());
-        }
+    @Autowired
+    public void setSoapSenderUtil(SoapSenderUtil soapSenderUtil) {
+        this.soapSenderUtil = soapSenderUtil;
     }
 }

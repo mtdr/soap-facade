@@ -7,7 +7,7 @@ import com.edu.mtdr.soapfacade.model.soapMsgs.AddResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.DivideResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.MultiplyResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.SubtractResponse;
-import com.edu.mtdr.soapfacade.service.SoapClient;
+import com.edu.mtdr.soapfacade.service.ISoapClientService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "Калькулятор",
         description = "Сервис-фасад над http://www.dneonline.com/calculator.asmx для взаимодействия по REST JSON")
 public class JsonController {
-    private final SoapClient soapClient;
+    private final ISoapClientService soapClientService;
 
     @Autowired
-    public JsonController(SoapClient soapClient) {
-        this.soapClient = soapClient;
+    public JsonController(ISoapClientService soapClientService) {
+        this.soapClientService = soapClientService;
     }
 
     @PostMapping("/multiply")
@@ -32,7 +32,7 @@ public class JsonController {
         if (req.getA() == 0 || req.getB() == 0) {
             return new CalcJsonResponseMessage(0);
         }
-        MultiplyResponse soapResponse = soapClient.getMultiplyResult(req.getA(), req.getB());
+        MultiplyResponse soapResponse = soapClientService.getMultiplyResult(req.getA(), req.getB());
         return new CalcJsonResponseMessage(soapResponse.getMultiplyResult());
     }
 
@@ -45,7 +45,7 @@ public class JsonController {
         if (req.getA() == 0) {
             return new CalcJsonResponseMessage(req.getB());
         }
-        AddResponse soapResponse = soapClient.getAdditionResult(req.getA(), req.getB());
+        AddResponse soapResponse = soapClientService.getAdditionResult(req.getA(), req.getB());
         return new CalcJsonResponseMessage(soapResponse.getAddResult());
     }
 
@@ -58,7 +58,7 @@ public class JsonController {
         if (req.getB() == 1) {
             return new CalcJsonResponseMessage(req.getA());
         }
-        DivideResponse soapResponse = soapClient.getDivideResult(req.getA(), req.getB());
+        DivideResponse soapResponse = soapClientService.getDivideResult(req.getA(), req.getB());
         return new CalcJsonResponseMessage(soapResponse.getDivideResult());
     }
 
@@ -68,7 +68,7 @@ public class JsonController {
         if (req.getB() == 0) {
             return new CalcJsonResponseMessage(req.getA());
         }
-        SubtractResponse soapResponse = soapClient.getSubtractResult(req.getA(), req.getB());
+        SubtractResponse soapResponse = soapClientService.getSubtractResult(req.getA(), req.getB());
         return new CalcJsonResponseMessage(soapResponse.getSubtractResult());
     }
 }
