@@ -1,4 +1,4 @@
-package com.edu.mtdr.soapfacade;
+package com.edu.mtdr.soapfacade.config;
 
 import com.edu.mtdr.soapfacade.util.SoapSenderUtil;
 import org.springframework.context.annotation.Bean;

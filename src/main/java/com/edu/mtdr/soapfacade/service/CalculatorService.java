@@ -8,15 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Сервис для отправки и приема запросов от SOAP-сервера (сервиса калькулятора)
+ * Сервис калькулятора
  */
 @Service
-public class SoapClientService implements ISoapClientService {
+public class CalculatorService implements ICalculatorService {
     /**
      * Логгер
      */
-    private static final Logger LOGGER = LoggerFactory.getLogger(SoapClientService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CalculatorService.class);
 
+    /**
+     * Утилита для отправки и приема запросов от SOAP-сервера (сервиса калькулятора)
+     */
     private SoapSenderUtil soapSenderUtil;
 
     /**

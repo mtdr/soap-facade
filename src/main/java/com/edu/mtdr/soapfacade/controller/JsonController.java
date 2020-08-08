@@ -7,7 +7,7 @@ import com.edu.mtdr.soapfacade.model.soapMsgs.AddResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.DivideResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.MultiplyResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.SubtractResponse;
-import com.edu.mtdr.soapfacade.service.ISoapClientService;
+import com.edu.mtdr.soapfacade.service.ICalculatorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "Калькулятор",
         description = "Сервис-фасад над http://www.dneonline.com/calculator.asmx для взаимодействия по REST JSON")
 public class JsonController {
-    private final ISoapClientService soapClientService;
+    private final ICalculatorService soapClientService;
 
     @Autowired
-    public JsonController(ISoapClientService soapClientService) {
+    public JsonController(ICalculatorService soapClientService) {
         this.soapClientService = soapClientService;
     }
 

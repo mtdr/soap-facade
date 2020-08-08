@@ -6,7 +6,7 @@ import com.edu.mtdr.soapfacade.model.soapMsgs.AddResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.DivideResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.MultiplyResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.SubtractResponse;
-import com.edu.mtdr.soapfacade.service.ISoapClientService;
+import com.edu.mtdr.soapfacade.service.ICalculatorService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +30,7 @@ public class ControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    private ISoapClientService soapClientService;
+    private ICalculatorService soapClientService;
 
     @Test
     public void testMultiply() throws Exception {

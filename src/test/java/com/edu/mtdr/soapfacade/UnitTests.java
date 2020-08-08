@@ -1,6 +1,6 @@
 package com.edu.mtdr.soapfacade;
 
-import com.edu.mtdr.soapfacade.service.ISoapClientService;
+import com.edu.mtdr.soapfacade.service.ICalculatorService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class UnitTests {
     @Autowired
-    private ISoapClientService soapClientService;
+    private ICalculatorService soapClientService;
 
     @Test
     public void testAdd() {

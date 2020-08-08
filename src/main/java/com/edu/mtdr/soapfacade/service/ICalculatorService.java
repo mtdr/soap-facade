@@ -6,9 +6,9 @@ import com.edu.mtdr.soapfacade.model.soapMsgs.MultiplyResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.SubtractResponse;
 
 /**
- * Интерфейс сервиса для отправки и приема запросов от SOAP-сервера (сервиса калькулятора)
+ * Интерфейс сервиса калькулятора
  */
-public interface ISoapClientService {
+public interface ICalculatorService {
     /**
      * @param a слагаемое
      * @param b слагаемое
