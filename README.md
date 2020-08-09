@@ -4,7 +4,8 @@ REST Application supporting basic operations on integers (addition, subtraction,
 
 Project is a REST JSON adapter on SOAP calculator service (http://www.dneonline.com/calculator.asmx) with some pre-processing for request error handling and optimization. 
 
-Swagger is connected and available after local deploying at: http://localhost:8080/swagger-ui.html
+Swagger is connected and available after local deploying at: http://localhost:8080/swagger-ui.html. 
+![Image of Swagger](https://github.com/mtdr/soap-facade/blob/master/swagger_pic.png)
 
 REST system of project based on unified JSON success and error response messages, which extends BaseResponseMessage. BaseResponseMessage guarantees that in message will be boolean flag "isSuccess" and integer "statusCode" (simple hhtp status 400 for errors in request, 404 for errors while processing and 200 for successfully processing). Throwables extend RuntimeException and are handled by SoapFacadeExceptionHandler annotated by "@ControllerAdvice". 
 
