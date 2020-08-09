@@ -8,7 +8,7 @@ import org.springframework.ws.soap.client.core.SoapActionCallback;
 /**
  * Утилита для низкоуровневого общения с SOAP-сервером
  */
-public class SoapSenderUtil extends WebServiceGatewaySupport {
+public class SoapExchangeUtil extends WebServiceGatewaySupport {
     /**
      * @param reqObj Объект запроса
      * @param req    Адрес запроса

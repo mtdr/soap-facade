@@ -6,34 +6,34 @@ import com.edu.mtdr.soapfacade.model.soapMsgs.MultiplyResponse;
 import com.edu.mtdr.soapfacade.model.soapMsgs.SubtractResponse;
 
 /**
- * Интерфейс сервиса калькулятора
+ * Calculator service interface
  */
 public interface ICalculatorService {
     /**
-     * @param a слагаемое
-     * @param b слагаемое
-     * @return результат сложения - сумма - в объекте SOAP-ответа
+     * @param a addend
+     * @param b addend
+     * @return sum in SOAP response {@link AddResponse}
      */
     AddResponse getAdditionResult(int a, int b);
 
     /**
-     * @param a множитель
-     * @param b множитель
-     * @return результат умножения - произведение - в объекте SOAP-ответа {@link MultiplyResponse}
+     * @param a multiplier
+     * @param b multiplier
+     * @return product of numbers in SOAP response {@link MultiplyResponse}
      */
     MultiplyResponse getMultiplyResult(int a, int b);
 
     /**
-     * @param a делимое
-     * @param b делитель
-     * @return результат деления - частное - в объекте SOAP-ответа {@link DivideResponse}
+     * @param a dividend
+     * @param b divisor
+     * @return ratio in SOAP response {@link DivideResponse}
      */
     DivideResponse getDivideResult(int a, int b);
 
     /**
-     * @param a уменьшаемое
-     * @param b вычитаемое
-     * @return результат вычитания - разность - в объекте SOAP-ответа {@link SubtractResponse}
+     * @param a depreciate
+     * @param b subtrahend
+     * @return difference in SOAP response {@link SubtractResponse}
      */
     SubtractResponse getSubtractResult(int a, int b);
 }

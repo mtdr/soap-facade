@@ -4,9 +4,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.http.HttpStatus;
 
-@ApiModel(description = "Сообщение с результатом вычислений")
+@ApiModel(description = "Operation response message")
 public class CalcJsonResponseMessage extends BaseResponseMessage {
-    @ApiModelProperty("Результат вычислений")
+    @ApiModelProperty("Result")
     private int result;
 
     public CalcJsonResponseMessage() {

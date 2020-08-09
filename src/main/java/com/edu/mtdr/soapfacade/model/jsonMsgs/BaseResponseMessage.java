@@ -3,11 +3,11 @@ package com.edu.mtdr.soapfacade.model.jsonMsgs;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(description = "Базовое сообщение")
+@ApiModel(description = "Base JSON response message")
 public abstract class BaseResponseMessage {
-    @ApiModelProperty("Код выполнения запроса")
+    @ApiModelProperty("Http result code")
     private final int statusCode;
-    @ApiModelProperty("Признак успешности выполнения запроса")
+    @ApiModelProperty("Flag of operation success")
     private final boolean isSuccess;
 
     public BaseResponseMessage(int statusCode, boolean isSuccess) {

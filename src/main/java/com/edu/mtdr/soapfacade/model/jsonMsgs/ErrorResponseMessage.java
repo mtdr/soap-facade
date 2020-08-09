@@ -4,9 +4,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.http.HttpStatus;
 
-@ApiModel(description = "Сообщение с ошибкой")
+@ApiModel(description = "Message with an error")
 public class ErrorResponseMessage extends BaseResponseMessage {
-    @ApiModelProperty("Причина ошибки")
+    @ApiModelProperty("Reason for error")
     private String reason;
 
     public ErrorResponseMessage() {

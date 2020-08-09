@@ -3,11 +3,11 @@ package com.edu.mtdr.soapfacade.model.jsonMsgs;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(description = "Сообщение с запросом вычислений")
+@ApiModel(description = "Operation request message")
 public class CalcJsonRequestMessage {
-    @ApiModelProperty("Аргумент 'a'")
+    @ApiModelProperty("Argument 'a'")
     private int a;
-    @ApiModelProperty("Аргумент 'b'")
+    @ApiModelProperty("Argument 'b'")
     private int b;
 
     public CalcJsonRequestMessage() {

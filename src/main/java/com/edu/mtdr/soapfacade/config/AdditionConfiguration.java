@@ -1,10 +1,13 @@
 package com.edu.mtdr.soapfacade.config;
 
-import com.edu.mtdr.soapfacade.util.SoapSenderUtil;
+import com.edu.mtdr.soapfacade.util.SoapExchangeUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
+/**
+ * Configuration for SOAP marshaller registration
+ */
 @Configuration
 public class AdditionConfiguration {
     @Bean
@@ -17,11 +20,11 @@ public class AdditionConfiguration {
     }
 
     @Bean
-    public SoapSenderUtil additionClient(Jaxb2Marshaller marshaller) {
-        SoapSenderUtil soapSenderUtil = new SoapSenderUtil();
-        soapSenderUtil.setDefaultUri("http://tempuri.org/Add");
-        soapSenderUtil.setMarshaller(marshaller);
-        soapSenderUtil.setUnmarshaller(marshaller);
-        return soapSenderUtil;
+    public SoapExchangeUtil additionClient(Jaxb2Marshaller marshaller) {
+        SoapExchangeUtil soapExchangeUtil = new SoapExchangeUtil();
+        soapExchangeUtil.setDefaultUri("http://tempuri.org/Add");
+        soapExchangeUtil.setMarshaller(marshaller);
+        soapExchangeUtil.setUnmarshaller(marshaller);
+        return soapExchangeUtil;
     }
 }

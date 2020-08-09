@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SoapFacadeExceptionHandler {
 
     /**
-     * Отлавливание исключений при проверке аргументов запросов
-     * @param e {@link SoapFacadeResultException} исключение аргументов
-     * @return сообщение об ошибке
+     * Handling of exceptions during request argument checking
+     * @param e {@link SoapFacadeArgumentException} arguments exception
+     * @return message with error
      */
     @ResponseBody
     @ExceptionHandler(SoapFacadeArgumentException.class)
@@ -24,9 +24,9 @@ public class SoapFacadeExceptionHandler {
     }
 
     /**
-     * Отлавливание исключений по результатам вычислений
-     * @param e {@link SoapFacadeResultException} исключение результата
-     * @return сообщение об ошибке
+     * Handling of exceptions in result of operations
+     * @param e {@link SoapFacadeResultException} result exception
+     * @return message with error
      */
     @ResponseBody
     @ExceptionHandler(SoapFacadeResultException.class)
@@ -35,13 +35,13 @@ public class SoapFacadeExceptionHandler {
     }
 
     /**
-     * Отлавливание исключений о некорректности формата запроса
-     * @return сообщение об ошибке
+     * Handling of incorrect request format exception
+     * @return message with error
      */
     @ResponseBody
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ErrorResponseMessage handleResultException() {
-        return new ErrorResponseMessage("Ошибка запроса! Сообщение должно содержать два целочисленных аргумента a и b",
+        return new ErrorResponseMessage("Error! Message must contain two integer arguments 'a' and 'b'",
                 HttpStatus.BAD_REQUEST);
     }
 }

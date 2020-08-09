@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Api(value = "Калькулятор",
-        description = "Сервис-фасад над http://www.dneonline.com/calculator.asmx для взаимодействия по REST JSON")
+@Api(value = "Calculator",
+        description = "Adapter for http://www.dneonline.com/calculator.asmx to exchange by REST JSON")
 public class JsonController {
     private final ICalculatorService soapClientService;
 
@@ -27,7 +27,7 @@ public class JsonController {
     }
 
     @PostMapping("/multiply")
-    @ApiOperation("Операция умножения")
+    @ApiOperation("Multiplication")
     public CalcJsonResponseMessage multiply(@RequestBody CalcJsonRequestMessage req) {
         if (req.getA() == 0 || req.getB() == 0) {
             return new CalcJsonResponseMessage(0);
@@ -37,7 +37,7 @@ public class JsonController {
     }
 
     @PostMapping("/add")
-    @ApiOperation("Операция сложения")
+    @ApiOperation("Addition")
     public CalcJsonResponseMessage add(@RequestBody CalcJsonRequestMessage req) {
         if (req.getB() == 0) {
             return new CalcJsonResponseMessage(req.getA());
@@ -50,7 +50,7 @@ public class JsonController {
     }
 
     @PostMapping("/divide")
-    @ApiOperation("Операция деления")
+    @ApiOperation("Division")
     public CalcJsonResponseMessage divide(@RequestBody CalcJsonRequestMessage req) {
         if (req.getB() == 0) {
             throw new SoapFacadeArgumentException("Делитель не может быть 0");
@@ -63,7 +63,7 @@ public class JsonController {
     }
 
     @PostMapping("/subtract")
-    @ApiOperation("Операция вычитания")
+    @ApiOperation("Subtraction")
     public CalcJsonResponseMessage subtract(@RequestBody CalcJsonRequestMessage req) {
         if (req.getB() == 0) {
             return new CalcJsonResponseMessage(req.getA());

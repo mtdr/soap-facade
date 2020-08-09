@@ -1,89 +1,89 @@
 package com.edu.mtdr.soapfacade.service;
 
 import com.edu.mtdr.soapfacade.model.soapMsgs.*;
-import com.edu.mtdr.soapfacade.util.SoapSenderUtil;
+import com.edu.mtdr.soapfacade.util.SoapExchangeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Сервис калькулятора
+ * Calculator service
  */
 @Service
 public class CalculatorService implements ICalculatorService {
     /**
-     * Логгер
+     * Logger
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(CalculatorService.class);
 
     /**
-     * Утилита для отправки и приема запросов от SOAP-сервера (сервиса калькулятора)
+     * SOAP message exchange utility
      */
-    private SoapSenderUtil soapSenderUtil;
+    private SoapExchangeUtil soapExchangeUtil;
 
     /**
-     * @param a слагаемое
-     * @param b слагаемое
-     * @return результат сложения - сумма - в объекте SOAP-ответа
+     * @param a addend
+     * @param b addend
+     * @return sum in SOAP response {@link AddResponse}
      */
     public AddResponse getAdditionResult(int a, int b) {
         Add additionReq = new Add();
         additionReq.setIntA(a);
         additionReq.setIntB(b);
 
-        LOGGER.info("Requesting addition res");
+        LOGGER.info("Requesting addition of " + a + " " + b + " result");
 
-        return (AddResponse) soapSenderUtil.sendSoapRequest(additionReq, "Add");
+        return (AddResponse) soapExchangeUtil.sendSoapRequest(additionReq, "Add");
     }
 
     /**
-     * @param a множитель
-     * @param b множитель
-     * @return результат умножения - произведение - в объекте SOAP-ответа {@link MultiplyResponse}
+     * @param a multiplier
+     * @param b multiplier
+     * @return product of numbers in SOAP response {@link MultiplyResponse}
      */
     public MultiplyResponse getMultiplyResult(int a, int b) {
         Multiply multiplyReq = new Multiply();
 
         multiplyReq.setIntA(a);
         multiplyReq.setIntB(b);
-        LOGGER.info("Requesting multiply res");
+        LOGGER.info("Requesting multiplication of " + a + " " + b + " result");
 
-        return (MultiplyResponse) soapSenderUtil.sendSoapRequest(multiplyReq, "Multiply");
+        return (MultiplyResponse) soapExchangeUtil.sendSoapRequest(multiplyReq, "Multiply");
     }
 
     /**
-     * @param a делимое
-     * @param b делитель
-     * @return результат деления - частное - в объекте SOAP-ответа {@link DivideResponse}
+     * @param a dividend
+     * @param b divisor
+     * @return ratio in SOAP response {@link DivideResponse}
      */
     public DivideResponse getDivideResult(int a, int b) {
         Divide divideReq = new Divide();
 
         divideReq.setIntA(a);
         divideReq.setIntB(b);
-        LOGGER.info("Requesting divide res");
+        LOGGER.info("Requesting division of " + a + " " + b + " result");
 
-        return (DivideResponse) soapSenderUtil.sendSoapRequest(divideReq, "Divide");
+        return (DivideResponse) soapExchangeUtil.sendSoapRequest(divideReq, "Divide");
     }
 
     /**
-     * @param a уменьшаемое
-     * @param b вычитаемое
-     * @return результат вычитания - разность - в объекте SOAP-ответа {@link SubtractResponse}
+     * @param a depreciate
+     * @param b subtrahend
+     * @return difference in SOAP response {@link SubtractResponse}
      */
     public SubtractResponse getSubtractResult(int a, int b) {
         Subtract subtractReq = new Subtract();
 
         subtractReq.setIntA(a);
         subtractReq.setIntB(b);
-        LOGGER.info("Requesting subtract res");
+        LOGGER.info("Requesting subtraction of " + a + " " + b + " result");
 
-        return (SubtractResponse) soapSenderUtil.sendSoapRequest(subtractReq, "Subtract");
+        return (SubtractResponse) soapExchangeUtil.sendSoapRequest(subtractReq, "Subtract");
     }
 
     @Autowired
-    public void setSoapSenderUtil(SoapSenderUtil soapSenderUtil) {
-        this.soapSenderUtil = soapSenderUtil;
+    public void setSoapSenderUtil(SoapExchangeUtil soapExchangeUtil) {
+        this.soapExchangeUtil = soapExchangeUtil;
     }
 }

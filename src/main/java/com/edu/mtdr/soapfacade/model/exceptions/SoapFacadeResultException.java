@@ -1,7 +1,7 @@
 package com.edu.mtdr.soapfacade.model.exceptions;
 
 /**
- * Исключение результата вычислений
+ * Exception in result of operation
  */
 public class SoapFacadeResultException extends RuntimeException {
     static final long serialVersionUID = 1627123L;
